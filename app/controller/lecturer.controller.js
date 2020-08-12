@@ -43,7 +43,7 @@ exports.add_lecturer = async (req, res) => {
 
 
 
-exports.edit_lecturer = async (req, res) =>{
+exports.edit_lecturer = async (req, res) => {
 
     if (req.body.empId == null || req.body.empId == undefined) {
         res.status(400).send({
@@ -52,25 +52,46 @@ exports.edit_lecturer = async (req, res) =>{
         return;
     }
 
-    const update_result = await Lecturer.update(  
-         {name: req.body.name, faculty:  req.body.faculty, department:  req.body.department, center:  req.body.center, building:  req.body.building, level:  req.body.level,rank:  req.body.rank,image:  req.body.image },  
-         {where: { empId: req.body.empId}}    
-          ) .then(result =>
-            res.status(200).send({
-                message: "Successfully update"
-            })
-          )
-          .catch(err =>
+    const update_result = await Lecturer.update(
+        { name: req.body.name, faculty: req.body.faculty, department: req.body.department, center: req.body.center, building: req.body.building, level: req.body.level, rank: req.body.rank, image: req.body.image },
+        { where: { empId: req.body.empId } }
+    ).then(result =>
+        res.status(200).send({
+            message: "Successfully update"
+        })
+    )
+        .catch(err =>
             res.status(400).send({
                 message: err
             })
-          )
+        )
 
 
 }
 
 
+exports.delete_lecturer = async (req, res) => {
+    if (req.body.empId == null || req.body.empId == undefined) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+        return;
+    }
+    var result = await Lecturer.destroy({
+        where: {
+            empId: req.body.empId
+        }
+    })
+    if (result !== 1) {
+        res.status(400).send({
+            message: "No Found"
+        });
+    }
+    res.status(400).send({
+        message: "Deleted success"
+    });
 
+}
 
 
 
