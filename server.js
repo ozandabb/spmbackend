@@ -25,9 +25,8 @@ app.get('/', (req, res) => {
 })
 
 
-require("./app/route/order.route")(app);
-require("./app/route/user.route")(app);
-require("./app/route/item.route")(app);
+require("./app/route/lecturer.route")(app);
+require("./app/route/student.route")(app);
 
 
 

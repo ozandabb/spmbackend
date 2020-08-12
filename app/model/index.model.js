@@ -25,6 +25,6 @@ db.student = require("./student.model")(sequelize, Sequelize);
 
 
 
-db.order.hasMany(db.items);
+
 
 module.exports = db;

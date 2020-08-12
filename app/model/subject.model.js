@@ -1,40 +1,40 @@
 
 module.exports = (sequelize, Sequelize) => {
-    const Lecturer = sequelize.define("lecturer", {
-        name: {
+    const Subject = sequelize.define("subject", {
+        year: {
             type: Sequelize.INTEGER,
             allowNull: false,
             
         },
-        empId: {
+        semester: {
             type: Sequelize.STRING,
             allowNull: false,
 
         },
-        faculty: {
+        name: {
             type: Sequelize.STRING,
             allowNull: false
 
         },
-        department: {
+        code: {
             type: Sequelize.STRING,
             allowNull: false,
         },
-        center: {
-            type: Sequelize.STRING,
+        lechours: {
+            type: Sequelize.INTEGER,
         },
-        building: {
-            type: Sequelize.STRING,
+        tutehours: {
+            type: Sequelize.INTEGER,
            
         },
-        level: {
-            type: Sequelize.STRING,
+        labhours: {
+            type: Sequelize.INTEGER,
         },
-        rank: {
-            type: Sequelize.STRING,
+        evaluationhour: {
+            type: Sequelize.INTEGER,
            
         },
     });
 
-    return Lecturer;
+    return Subject;
 };
