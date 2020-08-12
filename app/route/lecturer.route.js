@@ -3,11 +3,13 @@ module.exports = app => {
 
     var router = require("express").Router();
 
-    // Create a new Tutorial
-    router.post("/additem", item.addItem);
+    // Create a new Lecturer
+    router.post("/add", item.add_lecturer);
+    // Edit Lecturer
+    router.post("/edit", item.edit_lecturer);
 
 
 
 
-    app.use('/api/item', router);
+    app.use('/api/lecturer', router);
 };
