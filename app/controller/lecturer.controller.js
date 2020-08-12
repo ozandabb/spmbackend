@@ -2,20 +2,11 @@ const db = require("../model/index.model");
 const Lecturer = db.lecturer;
 const Op = db.Sequelize.Op;
 
-
-
-
-
-// ----------------------------------------------------------------------------------------------------------------
-// ----------------------------------------------------------------------------------------------------------------
-
-
 // create user
-exports.addItem = async (req, res) => {
-    console.log("ITEM>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
+exports.add_lecturer = async (req, res) => {
     console.log(req.body);
     // Validate request
-    if (req.body.oid == null || req.body.amount == null) {
+    if (req.body.empId == null || req.body.empId == undefined) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
@@ -23,23 +14,17 @@ exports.addItem = async (req, res) => {
     }
     // Create a Tutorial
     const lecturer = {
-        oid: req.body.oid,
-        quntity: req.body.quntity,
-        amount: req.body.amount,
-        advance: req.body.advance,
-        reciptNo1: req.body.reciptNo1,
-        payment2: req.body.payment2,
-        reciptNo2: req.body.reciptNo2,
-        payment3: req.body.payment3,
-        reciptNo3: req.body.reciptNo3,
-        balance: req.body.balance,
-        readydate: req.body.readydate,
-        deliverdate: req.body.deliverdate,
-        remark: req.body.remark,
-       
+        name: req.body.name,
+        empId: req.body.empId,
+        faculty: req.body.faculty,
+        department: req.body.department,
+        center: req.body.center,
+        building: req.body.building,
+        level: req.body.level,
+        rank: req.body.rank,
+        image: req.body.image
 
     };
-
     // Save Tutorial in the database
     Lecturer.create(lecturer)
         .then(data => {
@@ -55,6 +40,34 @@ exports.addItem = async (req, res) => {
             });
         });
 };
+
+
+
+exports.edit_lecturer = async (req, res) =>{
+
+    if (req.body.empId == null || req.body.empId == undefined) {
+        res.status(400).send({
+            message: "Content can not be empty!"
+        });
+        return;
+    }
+
+    const update_result = await Lecturer.update(  
+         {name: req.body.name, faculty:  req.body.faculty, department:  req.body.department, center:  req.body.center, building:  req.body.building, level:  req.body.level,rank:  req.body.rank,image:  req.body.image },  
+         {where: { empId: req.body.empId}}    
+          ) .then(result =>
+            res.status(200).send({
+                message: "Successfully update"
+            })
+          )
+          .catch(err =>
+            res.status(400).send({
+                message: err
+            })
+          )
+
+
+}
 
 
 

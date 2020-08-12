@@ -2,13 +2,15 @@
 module.exports = (sequelize, Sequelize) => {
     const Lecturer = sequelize.define("lecturer", {
         name: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.STRING,
             allowNull: false,
+            unique:true
             
         },
         empId: {
             type: Sequelize.STRING,
             allowNull: false,
+            unique:true
 
         },
         faculty: {
@@ -22,17 +24,27 @@ module.exports = (sequelize, Sequelize) => {
         },
         center: {
             type: Sequelize.STRING,
+            allowNull: false,
         },
         building: {
             type: Sequelize.STRING,
+            allowNull: false,
            
         },
         level: {
-            type: Sequelize.STRING,
+            type: Sequelize.INTEGER,
+            allowNull: false,
         },
         rank: {
             type: Sequelize.STRING,
+            allowNull: false,
+
            
+        },
+        image: {
+            type: Sequelize.STRING,
+            allowNull: true,
+
         },
     });
 
