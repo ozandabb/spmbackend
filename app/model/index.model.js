@@ -22,6 +22,7 @@ db.sequelize = sequelize;
 db.lecturer = require("./lecturer.model")(sequelize, Sequelize);
 db.session = require("./session.model")(sequelize, Sequelize);
 db.student = require("./student.model")(sequelize, Sequelize);
+db.subject = require("./subject.model")(sequelize, Sequelize);
 
 
 

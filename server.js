@@ -27,6 +27,7 @@ app.get('/', (req, res) => {
 
 require("./app/route/lecturer.route")(app);
 require("./app/route/student.route")(app);
+require("./app/route/subject.router")(app);
 
 
 
