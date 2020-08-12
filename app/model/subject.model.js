@@ -19,6 +19,7 @@ module.exports = (sequelize, Sequelize) => {
         code: {
             type: Sequelize.STRING,
             allowNull: false,
+            unique:true
         },
         lechours: {
             type: Sequelize.INTEGER,

@@ -1,32 +1,31 @@
 const db = require("../model/index.model");
-const Lecturer = db.lecturer;
+const Subject = db.subject;
 const Op = db.Sequelize.Op;
 
 // create user
-exports.add_lecturer = async (req, res) => {
+exports.add_subject = async (req, res) => {
     console.log(req.body);
     // Validate request
-    if (req.body.empId == null || req.body.empId == undefined) {
+    if (req.body.code == null || req.body.code == undefined) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
         return;
     }
     // Create a Tutorial
-    const lecturer = {
+    const subject = {
+        year: req.body.year,
+        semester: req.body.semester,
         name: req.body.name,
-        empId: req.body.empId,
-        faculty: req.body.faculty,
-        department: req.body.department,
-        center: req.body.center,
-        building: req.body.building,
-        level: req.body.level,
-        rank: req.body.rank,
-        image: req.body.image
+        code: req.body.code,
+        lechours: req.body.lechours,
+        tutehours: req.body.tutehours,
+        labhours: req.body.labhours,
+        evaluationhour: req.body.evaluationhour,
 
     };
     // Save Tutorial in the database
-    Lecturer.create(lecturer)
+    Subject.create(subject)
         .then(data => {
             res.status(200).send({
                 data:
@@ -43,18 +42,18 @@ exports.add_lecturer = async (req, res) => {
 
 
 
-exports.edit_lecturer = async (req, res) => {
+exports.edit_subject = async (req, res) => {
 
-    if (req.body.empId == null || req.body.empId == undefined) {
+    if (req.body.code == null || req.body.code == undefined) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
         return;
     }
 
-    const update_result = await Lecturer.update(
-        { name: req.body.name, faculty: req.body.faculty, department: req.body.department, center: req.body.center, building: req.body.building, level: req.body.level, rank: req.body.rank, image: req.body.image },
-        { where: { empId: req.body.empId } }
+    const update_result = await Subject.update(
+        { year: req.body.year, semester: req.body.semester, name: req.body.name, lechours: req.body.lechours, tutehours: req.body.tutehours, labhours: req.body.labhours, evaluationhour: req.body.evaluationhour},
+        { where: { code: req.body.code } }
     ).then(result =>
         res.status(200).send({
             message: "Successfully update"
@@ -70,16 +69,16 @@ exports.edit_lecturer = async (req, res) => {
 }
 
 
-exports.delete_lecturer = async (req, res) => {
-    if (req.body.empId == null || req.body.empId == undefined) {
+exports.delete_subject = async (req, res) => {
+    if (req.body.code == null || req.body.code == undefined) {
         res.status(400).send({
             message: "Content can not be empty!"
         });
         return;
     }
-    var result = await Lecturer.destroy({
+    var result = await Subject.destroy({
         where: {
-            empId: req.body.empId
+            code: req.body.code
         }
     })
     if (result !== 1) {

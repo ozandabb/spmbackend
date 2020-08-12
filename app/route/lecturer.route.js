@@ -1,12 +1,14 @@
 module.exports = app => {
-    const item = require("../controller/lecturer.controller");
+    const lecturer = require("../controller/lecturer.controller");
 
     var router = require("express").Router();
 
     // Create a new Lecturer
-    router.post("/add", item.add_lecturer);
+    router.post("/add", lecturer.add_lecturer);
     // Edit Lecturer
-    router.post("/edit", item.edit_lecturer);
+    router.post("/edit", lecturer.edit_lecturer);
+    // Delete Lecturer
+    router.post("/delete", lecturer.delete_lecturer);
 
 
 
