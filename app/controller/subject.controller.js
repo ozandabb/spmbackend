@@ -86,7 +86,7 @@ exports.delete_subject = async (req, res) => {
             message: "No Found"
         });
     }
-    res.status(400).send({
+    res.status(200).send({
         message: "Deleted success"
     });
 
